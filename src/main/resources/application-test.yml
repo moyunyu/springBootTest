@@ -1,0 +1,24 @@
+server:
+  port: 3389
+  
+spring:
+  datasource: 
+    username: scott
+    password: 857113
+    url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  type-aliases-package: com.zcx.test.dbmodel
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"    
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n"     
+  file: log/info.log
+  level:
+    com: 
+      delav: 
+        info

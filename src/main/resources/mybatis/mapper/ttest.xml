@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zcx.test.dao.TtestDao">
+	<sql id="Base_column">
+		"id1",
+		"text",
+		"type",
+		"amt"
+	</sql>
+
+	<select id="selectOne" resultType="com.zcx.test.dbmodel.Ttest">
+		select <include refid="Base_column"></include>
+		from "ttest" where "id1" = #{id1,jdbcType=DECIMAL}
+	</select>
+	
+	<update id="update" parameterType="com.zcx.test.dbmodel.Ttest">
+		update "ttest" set "type" = #{type,jdbcType=VARCHAR} where "id1" = #{id1,jdbcType=DECIMAL}
+	</update>
+
+	<insert id="insert" parameterType="com.zcx.test.dbmodel.Ttest">
+		insert into "ttest"
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id1 != null">
+				"id1",
+			</if>
+			<if test="text != null">
+				"text",
+			</if>
+			<if test="type != null">
+				"type",
+			</if>
+			<if test="amt != null">
+				"amt",
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id1 != null">
+				#{id1,jdbcType=DECIMAL},
+			</if>
+			<if test="text != null">
+				#{text,jdbcType=DECIMAL},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="amt != null">
+				#{amt,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+</mapper>
